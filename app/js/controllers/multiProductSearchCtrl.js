@@ -37,9 +37,9 @@ function ($scope, MultiProduct, Product, Category, $routeParams, $log) {
                 products = products.filter(product => product.StandardPriceSchedule.PriceBreaks[0].Price <= maxPrice);
             }
 
-            if (staticSpecGroup && products) {
-                products = products.filter(product => product.StaticSpecGroups.VisibleSpecGroups[0].Name.toLowerCase() == staticSpecGroup.toLowerCase());
-            }
+            //if (staticSpecGroup && products) {
+            //    products = products.filter(product => product.StaticSpecGroups.VisibleSpecGroups[0].Name.toLowerCase() == staticSpecGroup.toLowerCase());
+            //}
 
             $scope.products = products;
             $scope.productCount = count;
