@@ -1,5 +1,5 @@
-﻿four51.app.controller('MultiProductSearchCtrl', ['$scope', 'Product', '$routeParams',
-function ($scope, Product, $routeParams) {
+﻿four51.app.controller('MultiProductSearchCtrl', ['$scope', 'MultiProduct', '$routeParams',
+function ($scope, MultiProduct, $routeParams) {
     $scope.settings = {
         currentPage: 1,
         pageSize: 40
