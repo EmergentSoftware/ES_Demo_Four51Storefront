@@ -28,22 +28,10 @@ function ($scope, MultiProduct, $routeParams) {
 
     function Search() {
         $scope.searchLoading = true;
-        if ($scope.searchCategories) {
-            Object.keys(categories).forEach((element, index, array) => {
-                if ($scope.searchCategories.split(',').includes(element)) {
-                    MultiProduct.search('handouts', $scope.searchTerm, null, function (products, count) {
-                        $scope.products = products;
-                        $scope.productCount = count;
-                        $scope.searchLoading = false;
-                    }, $scope.settings.currentPage, $scope.settings.pageSize);
-                }
-            })
-        } else {
-            MultiProduct.search(null, $scope.searchTerm, null, function (products, count) {
-                $scope.products = products;
-                $scope.productCount = count;
-                $scope.searchLoading = false;
-            }, $scope.settings.currentPage, $scope.settings.pageSize);
-        }
+        MultiProduct.search(null, $scope.searchTerm, null, function (products, count) {
+            $scope.products = products;
+            $scope.productCount = count;
+            $scope.searchLoading = false;
+        }, $scope.settings.currentPage, $scope.settings.pageSize);
     }
 }]);
