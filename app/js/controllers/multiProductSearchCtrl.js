@@ -44,7 +44,8 @@ function ($scope, MultiProduct, Product, Category, $routeParams, $log) {
             $scope.products = products;
             $scope.productCount = count;
             $scope.searchLoading = false;
-        }, $scope.settings.currentPage, $scope.settings.pageSize, $scope.minPrice, $scope.maxPrice, $scope.staticSpecGroup);
+        //}, $scope.settings.currentPage, $scope.settings.pageSize, $scope.minPrice, $scope.maxPrice, $scope.staticSpecGroup);
+        }, $scope.settings.currentPage, $scope.settings.pageSize, 0, 50.00, null);
     }
 
     function Search() {
