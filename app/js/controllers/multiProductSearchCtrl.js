@@ -28,10 +28,18 @@ function ($scope, MultiProduct, $routeParams) {
 
     function Search() {
         $scope.searchLoading = true;
-        MultiProduct.search(null, $scope.searchTerm, null, function (products, count) {
-            $scope.products = products;
-            $scope.productCount = count;
-            $scope.searchLoading = false;
-        }, $scope.settings.currentPage, $scope.settings.pageSize);
+        if ($scope.searchCategories) {
+            MultiProduct.search('Handouts', $scope.searchTerm, null, function (products, count) {
+                $scope.products = products;
+                $scope.productCount = count;
+                $scope.searchLoading = false;
+            }, $scope.settings.currentPage, $scope.settings.pageSize);
+        } else {
+            MultiProduct.search(null, $scope.searchTerm, null, function (products, count) {
+                $scope.products = products;
+                $scope.productCount = count;
+                $scope.searchLoading = false;
+            }, $scope.settings.currentPage, $scope.settings.pageSize);
+        }
     }
 }]);
