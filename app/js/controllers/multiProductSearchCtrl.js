@@ -55,11 +55,20 @@ function ($scope, MultiProduct, Product, Category, $routeParams, $log) {
         if ($scope.searchCategories) {
             Object.keys(categories).forEach((element, index, array) => {
                 if ($scope.searchCategories.split(',').includes(element)) {
-                    searchByCategoryInteropID(categories[element].categoryInteropID);
+                    //searchByCategoryInteropID(categories[element].categoryInteropID);
+                    Product.search(categoryInteropID, $scope.searchTerm, null, function (products, count, pagesize) {
+                        $scope.products = products;
+                        $scope.productCount = count;
+                        $scope.searchLoading = false;
+                    }, $scope.settings.currentPage, $scope.settings.pageSize);
                 }
             })
         } else {
-            searchByCategoryInteropID(null);
+            Product.search(null, $scope.searchTerm, null, function (products, count) {
+                $scope.products = products;
+                $scope.productCount = count;
+                $scope.searchLoading = false;
+            }, $scope.settings.currentPage, $scope.settings.pageSize);
         }
     }
 }]);
