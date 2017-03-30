@@ -26,22 +26,9 @@ function ($scope, Product, Category, $routeParams, $log) {
             Search();
     });
 
-    function Search() {
-        $scope.searchLoading = true;
-        if ($scope.searchCategories) {
-            Object.keys(categories).forEach((element, index, array) => {
-                if ($scope.searchCategories.split(',').includes(element)) {
-                    searchByCategoryInteropID(categories[element].categoryInteropID);
-                }
-            })
-        } else {
-            searchByCategoryInteropID(null);
-        }
-    }
-
     function searchByCategoryInteropID(categoryInteropID) {
         Product.search(categoryInteropID, $scope.searchTerm, null, function (products, count) {
-            
+
             if ($scope.minPrice && products) {
                 products = products.filter(product => product.StandardPriceSchedule.PriceBreaks[0].Price >= $scope.minPrice);
             }
@@ -58,5 +45,18 @@ function ($scope, Product, Category, $routeParams, $log) {
             $scope.productCount = count;
             $scope.searchLoading = false;
         }, $scope.settings.currentPage, $scope.settings.pageSize);
+    }
+
+    function Search() {
+        $scope.searchLoading = true;
+        if ($scope.searchCategories) {
+            Object.keys(categories).forEach((element, index, array) => {
+                if ($scope.searchCategories.split(',').includes(element)) {
+                    searchByCategoryInteropID(categories[element].categoryInteropID);
+                }
+            })
+        } else {
+            searchByCategoryInteropID(null);
+        }
     }
 }]);
