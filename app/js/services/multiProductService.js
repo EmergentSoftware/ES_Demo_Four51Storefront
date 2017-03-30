@@ -1,8 +1,8 @@
-﻿four51.app.factory('MultiProduct', ['$resource', '$451', 'Security', 'User', function ($resource, $451, Security, User) {
+﻿four51.app.factory('MultiProduct', ['$resource', '$451', '$log', 'Security', 'User', function ($resource, $451, $log, Security, User) {
     var variantCache = [], productCache = [], criteriaCache;
-    function _then(fn, data, count) {
+    function _then(fn, data, count, minPrice, maxPrice, staticSpecGroup) {
         if (angular.isFunction(fn))
-            fn(data, count);
+            fn(data, count, minPrice, maxPrice, staticSpecGroup);
     }
 
     function _extend(product) {
@@ -88,7 +88,7 @@
         });
     }
 
-    var _search = function (categoryInteropID, searchTerm, relatedProductsGroupID, success, page, pagesize) {
+    var _search = function (categoryInteropID, searchTerm, relatedProductsGroupID, success, page, pagesize, minPrice, maxPrice, staticSpecGroup) {
         if (!categoryInteropID && !searchTerm && !relatedProductsGroupID) {
             _then(success, null);
             return null;
@@ -116,7 +116,7 @@
                     if (typeof productCache[i] == 'object') continue;
                     productCache[i] = products.List[i - (((criteria.Page || 1) - 1) * (criteria.PageSize || 100))] || i;
                 }
-                _then(success, productCache, products.Count);
+                _then(success, productCache, products.Count, minPrice, maxPrice, staticSpecGroup);
             });
         }
     }
