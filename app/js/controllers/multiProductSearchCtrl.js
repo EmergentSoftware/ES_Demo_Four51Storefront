@@ -1,5 +1,5 @@
-﻿four51.app.controller('MultiProductSearchCtrl', ['$scope', 'MultiProduct', 'Product', 'Category', '$routeParams', '$log',
-function ($scope, MultiProduct, Product, Category, $routeParams, $log) {
+﻿four51.app.controller('MultiProductSearchCtrl', ['$scope', 'Product', 'Category', '$routeParams', '$log',
+function ($scope, Product, Category, $routeParams, $log) {
     $scope.settings = {
         currentPage: 1,
         pageSize: 40
@@ -26,29 +26,29 @@ function ($scope, MultiProduct, Product, Category, $routeParams, $log) {
             Search();
     });
 
-    function searchByCategoryInteropID(categoryInteropID) {
-        //MultiProduct.search(categoryInteropID, $scope.searchTerm, null, function (products, count, pagesize, minPrice, maxPrice, staticSpecGroup) {
-        Product.search(categoryInteropID, $scope.searchTerm, null, function (products, count, pagesize) {
-            //$log.log('minPrice: ' + minPrice + ' maxPrice: ' + maxPrice + ' staticSpecGroup: ' + staticSpecGroup);
-            //if (minPrice && products) {
-            //    products = products.filter(product => product.StandardPriceSchedule.PriceBreaks[0].Price >= minPrice);
-            //}
+    //function searchByCategoryInteropID(categoryInteropID) {
+    //    //MultiProduct.search(categoryInteropID, $scope.searchTerm, null, function (products, count, pagesize, minPrice, maxPrice, staticSpecGroup) {
+    //    Product.search(categoryInteropID, $scope.searchTerm, null, function (products, count, pagesize) {
+    //        //$log.log('minPrice: ' + minPrice + ' maxPrice: ' + maxPrice + ' staticSpecGroup: ' + staticSpecGroup);
+    //        //if (minPrice && products) {
+    //        //    products = products.filter(product => product.StandardPriceSchedule.PriceBreaks[0].Price >= minPrice);
+    //        //}
 
-            //if (maxPrice && products) {
-            //    products = products.filter(product => product.StandardPriceSchedule.PriceBreaks[0].Price <= maxPrice);
-            //}
+    //        //if (maxPrice && products) {
+    //        //    products = products.filter(product => product.StandardPriceSchedule.PriceBreaks[0].Price <= maxPrice);
+    //        //}
 
-            //if (staticSpecGroup && products) {
-            //    products = products.filter(product => product.StaticSpecGroups.VisibleSpecGroups[0].Name.toLowerCase() == staticSpecGroup.toLowerCase());
-            //}
+    //        //if (staticSpecGroup && products) {
+    //        //    products = products.filter(product => product.StaticSpecGroups.VisibleSpecGroups[0].Name.toLowerCase() == staticSpecGroup.toLowerCase());
+    //        //}
 
-            $scope.products = products;
-            $scope.productCount = count;
-            $scope.searchLoading = false;
-            //}, $scope.settings.currentPage, $scope.settings.pageSize, $scope.minPrice, $scope.maxPrice, $scope.staticSpecGroup);
-        //}, $scope.settings.currentPage, $scope.settings.pageSize, 0, 50.00, null);
-        }, $scope.settings.currentPage, $scope.settings.pageSize);
-    }
+    //        $scope.products = products;
+    //        $scope.productCount = count;
+    //        $scope.searchLoading = false;
+    //        //}, $scope.settings.currentPage, $scope.settings.pageSize, $scope.minPrice, $scope.maxPrice, $scope.staticSpecGroup);
+    //    //}, $scope.settings.currentPage, $scope.settings.pageSize, 0, 50.00, null);
+    //    }, $scope.settings.currentPage, $scope.settings.pageSize);
+    //}
 
     function Search() {
         $scope.searchLoading = true;
