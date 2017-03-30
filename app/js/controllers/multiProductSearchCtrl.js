@@ -28,7 +28,7 @@ function ($scope, MultiProduct, $routeParams) {
 
     function Search() {
         $scope.searchLoading = true;
-        Product.search(null, $scope.searchTerm, null, function (products, count) {
+        MultiProduct.search(null, $scope.searchTerm, null, function (products, count) {
             $scope.products = products;
             $scope.productCount = count;
             $scope.searchLoading = false;
