@@ -33,9 +33,19 @@ function ($scope, MultiProduct, $routeParams, $log) {
             for (var i = 0; i < keys.length; i++) {
                 if ($scope.searchCategories.split(',').includes(keys[i])) {
                     MultiProduct.search(categories[keys[i]].categoryInteropID, $scope.searchTerm, null, function (products, count, minPrice, maxPrice, staticSpecGroup) {
-                        $log.log(minPrice);
-                        $log.log(maxPrice);
-                        $log.log(staticSpecGroup);
+
+                        if (minPrice && products) {
+                            products = products.filter(product => product.StandardPriceSchedule.PriceBreaks[0].Price >= minPrice);
+                        }
+
+                        if (maxPrice && products) {
+                            products = products.filter(product => product.StandardPriceSchedule.PriceBreaks[0].Price <= maxPrice);
+                        }
+
+                        if (staticSpecGroup && products) {
+                            products = products.filter(product => product.StaticSpecGroups.VisibleSpecGroups[0].Name.toLowerCase() == staticSpecGroup.toLowerCase());
+                        }
+
                         $scope.products = products;
                         $scope.productCount = count;
                         $scope.searchLoading = false;
