@@ -35,15 +35,33 @@ function ($scope, MultiProduct, $routeParams, $log) {
                     MultiProduct.search(categories[keys[i]].categoryInteropID, $scope.searchTerm, null, function (products, count, minPrice, maxPrice, staticSpecGroup) {
 
                         if (minPrice && products) {
-                            products = products.filter(product => product.StandardPriceSchedule.PriceBreaks[0].Price >= minPrice);
+                            var tempProducts = [];
+                            for (var i = 0; i < products.length; i++) {
+                                if (products[i].StandardPriceSchedule.PriceBreaks[0].Price >= minPrice) {
+                                    tempProducts.push(products[i]);
+                                }
+                            }
+                            products = tempProducts;
                         }
 
                         if (maxPrice && products) {
-                            products = products.filter(product => product.StandardPriceSchedule.PriceBreaks[0].Price <= maxPrice);
+                            var tempProducts = [];
+                            for (var i = 0; i < products.length; i++) {
+                                if (products[i].StandardPriceSchedule.PriceBreaks[0].Price <= maxPrice) {
+                                    tempProducts.push(products[i]);
+                                }
+                            }
+                            products = tempProducts;
                         }
 
                         if (staticSpecGroup && products) {
-                            products = products.filter(product => product.StaticSpecGroups.VisibleSpecGroups[0].Name.toLowerCase() == staticSpecGroup.toLowerCase());
+                            var tempProducts = [];
+                            for (var i = 0; i < products.length; i++) {
+                                if (products[i].StaticSpecGroups.VisibleSpecGroups[0].Name.toLowerCase() == staticSpecGroup.toLowerCase()) {
+                                    tempProducts.push(products[i]);
+                                }
+                            }
+                            products = tempProducts;
                         }
 
                         $scope.products = products;
