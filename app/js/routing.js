@@ -40,6 +40,7 @@ four51.app.config(['$routeProvider', '$locationProvider', function($routeProvide
         when('/cart/:id', { templateUrl: 'partials/cartView.html', controller: 'CartViewCtrl' }).
         when('/login', { templateUrl: 'partials/controls/login.html', controller: 'LoginCtrl' }).
         when('/search', { templateUrl: 'partials/searchView.html', controller: 'ProductSearchCtrl' }).
+        when('/multi-search', { templateUrl: 'partials/multiSearchView.html', controller: 'MultiProductSearchCtrl' }).
         when('/search/:searchTerm', { templateUrl: 'partials/searchView.html', controller: 'ProductSearchCtrl' }).
         when('/security', { templateUrl: 'partials/Security/security.html', controller: 'SecurityCtrl' }).
         when('/conditions', { templateUrl: 'partials/Conditions/conditions.html', controller: 'ConditionsCtrl' }).
