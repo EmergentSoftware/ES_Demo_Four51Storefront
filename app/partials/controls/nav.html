@@ -90,6 +90,12 @@
                             <span class="hidden-xs">{{'Search' | r | xlat}}</span>
                         </a>
                     </li>
+                    <li class="multi-search" ng-if="user.Type == 'Customer'" ng-class="{'active': isActive('order'), 'active-xs': isActive('favoriteorders')}">
+                        <a id="451qa_order_link" href="multi-search">
+                            <i class="fa fa-info"></i>
+                            <span class="hidden-xs">{{'About' | r | xlat}}</span>
+                        </a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     <li class="cart" ng-class="{'active': isActive(['cart', 'checkout'])}">
